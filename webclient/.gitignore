@@ -1,0 +1,14 @@
+#
+# folders
+#
+baked
+.idea
+
+
+# OS generated files #
+######################
+.project
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
