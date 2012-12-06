@@ -5,7 +5,7 @@
 
 h1 {
     padding: 20px;
-    background: url(logo.png) no-repeat center;
+    background: url(../media/logo.png) no-repeat center;
     width: 144px;
     height: 108px;
 }
@@ -31,11 +31,11 @@ h1 span {
 }
 
 .sep_up {
-    padding-top: 40px;
+    padding-top: 10px;
     margin-left: 190px;
     left: -1px;
     height: 40px;
-    background: url(gradient_top.png) no-repeat bottom left;
+    background: url(../media/gradient_top.png) no-repeat bottom left;
 }
 
 .buttonToggle {
@@ -77,6 +77,6 @@ h1 span {
 }
 
 .ui-tabs-nav li.ui-tabs-active {
-    background: url(gradient_tab_button.png) #F6F6F6 repeat-x !important;
+    background: url(../media/gradient_tab_button.png) #F6F6F6 repeat-x !important;
 
 }
