@@ -1,0 +1,106 @@
+<html>
+<head>
+    <!--Load the AJAX API-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script type="text/javascript" src="js/jsapi.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <script type="text/javascript">
+
+        var buttonVisible = false;
+
+        var buttonHiddenCSS = {'margin-left':500, height:0, opacity:0};
+        var buttonVisibleCSS = {'margin-left':0, height:20, opacity:1};
+
+        $(function () {
+            $('#tabs').tabs();
+            $('.button_panel').css(buttonHiddenCSS);
+        });
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1.0', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+
+
+        function toggleBox() {
+            if (buttonVisible) {
+                $('.button_panel').animate(buttonHiddenCSS, 300);
+            } else {
+                $('.button_panel').animate(buttonVisibleCSS, 300);
+            }
+            buttonVisible = !buttonVisible;
+            drawChart(buttonVisible);
+        }
+
+        function drawChart(bla) {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            if (bla) {
+                data.addRows([
+                    ['Mushrooms', 4],
+                    ['Onions', 1],
+                    ['Olives', 1],
+                    ['Zucchini', 1],
+                    ['Pepperoni', 2]
+                ]);
+            } else {
+                data.addRows([
+                    ['Mushrooms', 3],
+                    ['Onions', 1],
+                    ['Olives', 1],
+                    ['Zucchini', 1],
+                    ['Pepperoni', 2]
+                ]);
+            }
+
+
+            // Set chart options
+            var options = {'title':'How Much Pizza I Ate Last Night',
+                'width':500,
+                'height':300,
+                'backgroundColor':"#F6F6F6"};
+
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+<div id="navigation">
+    <!-- THIS SHIT FOR THE BOTS YO PEACE OUT -->
+    <h1><span>Scrapedia</span></h1>
+</div>
+<div class="sep_up"></div>
+<div id="content">
+    <!--Div that will hold the pie chart-->
+    <input type="button" value="CLICK ME HARD!" onclick="toggleBox()" class="buttonToggle">
+
+    <div class="button_panel">I'M A BOX MOTHERFUCKER</div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Top Ten</a></li>
+            <li><a href="#tabs-2">Average Links</a></li>
+            <li><a href="#tabs-3">Most Linked</a></li>
+        </ul>
+        <div id="tabs-1" class="chartTab">
+            <div id="chart_div"></div>
+        </div>
+        <div id="tabs-2" class="chartTab"></div>
+        <div id="tabs-3" class="chartTab"></div>
+    </div>
+</div>
+
+</body>
+</html>
