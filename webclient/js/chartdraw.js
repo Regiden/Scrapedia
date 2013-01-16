@@ -1,13 +1,13 @@
 // load the core package from the char API
 google.load('visualization', '1.0', {'packages': ['table']});
+google.load('visualization', '1.0', {'packages': ['corechart']});
 
 var HiddenGraphCSS = {opacity: 0};
 var VisibleGraphCSS = {opacity: 1};
 var UlHiddenCSS = {'margin-left': 200, height: 0, opacity: 0};
-var UlVisibleCSS = {'margin-left': 0, height: 80, opacity: 1};
+var UlVisibleCSS = {'margin-left': 0, height: 84, opacity: 1};
 
-
-var state = -1;
+var statsState = -1;
 var UL1Visible = false;
 
 /* TOGGLE STUFF
@@ -16,37 +16,73 @@ var UL1Visible = false;
 
 $(function () {
     $('#nav ul').css(UlHiddenCSS);
+    $("#nav ul").hide();
 });
 
 
 function toggleUL1() {
+    if (pathState) {
+        $("#content").empty();
+    }
     if (UL1Visible) {
-        $('#nav ul').animate(UlHiddenCSS, 300);
-        $("#content").animate({height: 0}, 320, null, function () {
-            $("#content").empty();
-            $("#content").height("auto");
-            state = -1;
+        $('#nav ul').animate(UlHiddenCSS, 300, function () {
+            $("#nav ul").hide();
         });
+        fadeContent();
     } else {
+        fadeContent()
+        $("#nav ul").show();
         $('#nav ul').animate(UlVisibleCSS, 300);
     }
+    appendHeader();
+    statsState = -1;
+    pathState = false;
     UL1Visible = !UL1Visible;
+}
+
+function fadeContent(callback) {
+    if (callback) {
+        $("#content").animate(null, 320, null, callback);
+    } else {
+        $("#content").empty();
+        $("#content").height("auto");
+    }
+}
+
+function appendHeader() {
+     $("#content").append($('<p class="wait">Please choose the statistic you want to watch.</p>'));
+}
+
+function hideUL1(callback) {
+    if (!UL1Visible) {
+        if(callback){
+            callback();
+        }
+        return;
+    }
+    $('#nav ul').animate(UlHiddenCSS, 300, function () {
+        $("#nav ul").hide();
+    });
+    fadeContent(callback)
+    UL1Visible = false;
+    statsState = -1;
 }
 
 /* DRAW STUFF
  ============================================================================================================================
  */
 function callTop20Linked() {
-    if (state == 0) {
+    if (statsState == 0) {
         return;
     }
-    state = 0;
+    statsState = 0;
     $("#content").empty();
     $("#content").append($('<p class="wait">Please wait...</p>'));
 
     $.ajax({
         url: "php/request.php",
         data: "page=mostlinked",
+        dataType: "text",
         success: function (data) {
             if (data) {
                 drawTop20Linked(eval(data));
@@ -57,16 +93,17 @@ function callTop20Linked() {
     });
 }
 function callTop20Links() {
-    if (state == 1) {
+    if (statsState == 1) {
         return;
     }
-    state = 1;
+    statsState = 1;
     $("#content").empty();
     $("#content").append($('<p class="wait">Please wait...</p>'));
 
     $.ajax({
         url: "php/request.php",
         data: "page=mostlinks",
+        dataType: "text",
         success: function (data, status) {
             if (data) {
                 drawTop20Links(eval(data));
@@ -131,14 +168,14 @@ function drawTop20Links(rows) {
     }
 
     google.visualization.events.addListener(chart, 'ready', afterDraw);
-    chart.draw(data, {showRowNumber: true});
+    chart.draw(data, {showRowNumber: true, allowHtml: true});
 }
 
 function appendNotLinkedList() {
-    if (state == 2) {
+    if (statsState == 2) {
         return;
     }
-    state = 2;
+    statsState = 2;
     $("#content").empty();
     $("#content").append($('<p class="wait">Please wait...</p>'));
     $.ajax({
@@ -158,10 +195,10 @@ function appendNotLinkedList() {
 }
 
 function appendNoLinks() {
-    if (state == 3) {
+    if (statsState == 3) {
         return;
     }
-    state = 3;
+    statsState = 3;
     $("#content").empty();
     $("#content").append($('<p class="wait">Please wait...</p>'));
     $.ajax({

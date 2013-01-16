@@ -15,6 +15,9 @@ switch($_GET["page"])
   case ("unlinked"):
 	$link="http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/statistics/list/unlinked";
     break;
+  case ("path"):
+	$link="http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/pathfinder/json?stitle=Informatik&dtitle=DaWanda";
+    break;
   default:
  	$link="http://www.google.de";
     break;

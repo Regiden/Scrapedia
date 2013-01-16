@@ -9,10 +9,19 @@ h1 span {
     display: none;
 }
 
+#h_h3 {
+    margin-top: 5px;
+    font-size: 30px;
+}
+
+#h_high {
+    font-weight: bold;
+}
+
 #content {
-    padding-left: 8px;
-    padding-bottom: 8px;
-    padding-right: 8px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    padding-right: 3px;
     margin-left: 250px;
     border-left: 1px solid #A7D7F9;
     border-bottom: 1px solid #A7D7F9;
@@ -22,13 +31,22 @@ h1 span {
     color: blue;
     text-decoration: underline;
 }
+
+#spacer {
+    margin-left: 5px;
+}
+
 #content ul li a:active {
     color: red;
     text-decoration: underline;
 }
 
+.cbinput {
+    float: left;
+}
+
 .graphcontainer {
-   border: solid 1px gray;
+    border: solid 1px gray;
 }
 
 #nav {
@@ -38,7 +56,7 @@ h1 span {
     width: 250px;
 }
 
-#nav li#navli {
+#nav li.navli {
     text-decoration: none;
     cursor: pointer;
 }
@@ -50,7 +68,6 @@ h1 span {
 #nav ol li span {
     color: #000;
 }
-
 
 div.nav li a {
     display: block;
@@ -64,6 +81,11 @@ div.nav ul {
     margin: 0;
     padding: 0;
     border: none;
+}
+
+.canvascontainer {
+    border: solid 1px #a9a9a9;
+    overflow: auto;
 }
 
 /*==================================================================================*/

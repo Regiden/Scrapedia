@@ -4,8 +4,13 @@
     <link href='css/global.css' rel='stylesheet'>
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="js/seedrandom.js"></script>
     <script type="text/javascript" src="js/chartdraw.js"></script>
-    <title>Scrapedia - Home</title>
+    <script type="text/javascript" src="js/pathdraw.js"></script>
+    <script type="text/javascript" src="js/raphael-min.js"></script>
+    <script type="text/javascript" src="js/dracula_graffle.js"></script>
+    <script type="text/javascript" src="js/dracula_graph.js"></script>
+    <title>Scrapedia- Home</title>
 </head>
 <body>
 <h1><span>Scrapedia</span></h1>
@@ -14,19 +19,19 @@
 
 <div id='nav'>
     <ol>
-        <li>
-            <a href="./Scrapedia - Home_files/Scrapedia - Home.htm">Home</a>
+        <li class="navli">
+            <span onclick="returnHome()" class="lispan">Home</span>
         </li>
-        <li id="navli"><span onclick="toggleUL1()" class="lispan">Statistics</span>
-            <ul onclick="">
-               <li><span class="lispan" onclick="callTop20Linked()">Top 20 Most Linked</span></li>
-               <li><span class="lispan" onclick="callTop20Links()">Top 20 Most Links</span></li>
-               <li><span class="lispan" onclick="appendNotLinkedList()">Articles not linked</span></li>
-               <li><span class="lispan" onclick="appendNoLinks()">Articles without Links</span></li>
+        <li class="navli"><span onclick="toggleUL1()" class="lispan">Statistics</span>
+            <ul>
+                <li><span class="lispan" onclick="callTop20Linked()">Top 20 Most Linked</span></li>
+                <li><span class="lispan" onclick="callTop20Links()">Top 20 Most Links</span></li>
+                <li><span class="lispan" onclick="appendNotLinkedList()">Articles not linked</span></li>
+                <li><span class="lispan" onclick="appendNoLinks()">Articles without Links</span></li>
             </ul>
         </li>
-        <li>
-            <a href="http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/pathfinder">PathFinder</a>
+        <li class="navli"><span onclick="toggleContent()" class="lispan">Path Finder</span>
+
         </li>
         <li>
             <a href="http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/neovigator">Neovigator</a>
